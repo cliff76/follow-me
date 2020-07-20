@@ -27,10 +27,12 @@ const usingFile = (f) => {
 };
 //To be included in a shallow API
 
+const url = 'https://api.twitter.com/1.1/followers/list.json?cursor=-1&screen_name=cliftonc76&skip_status=true&include_user_entities=false&count=200';
 const headers = {
     'Accept': 'application/vnd.github.v3+json',
+    'Authorization': process.env.AUTHORIZATION,
     'User-Agent': 'nodeJS'
 };
-get('https://api.github.com/users/cliff76',headers).then(result => usingFile('./githubResponse.txt').write(result.data)).catch(e => {
+get(url,headers).then(result => usingFile('./db/followersp2.json').write(result.data)).catch(e => {
     console.error('API Error:', e)
 });
